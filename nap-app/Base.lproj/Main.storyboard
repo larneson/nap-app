@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="nap_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +21,45 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xw7-hA-4Fi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XcX-Uv-Qr4">
+                                <rect key="frame" x="16" y="617" width="343" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Select"/>
+                                <connections>
+                                    <action selector="selectButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XX7-7u-T0P"/>
+                                </connections>
+                            </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="gZc-eR-ccB">
+                                <rect key="frame" x="163" y="309.5" width="48" height="48"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gZc-eR-ccB" firstAttribute="centerY" secondItem="Xw7-hA-4Fi" secondAttribute="centerY" id="36h-LF-VLR"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XcX-Uv-Qr4" secondAttribute="bottom" constant="20" id="6qO-qm-tne"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xw7-hA-4Fi" secondAttribute="trailing" constant="-16" id="830-hl-r9l"/>
+                            <constraint firstItem="gZc-eR-ccB" firstAttribute="centerX" secondItem="Xw7-hA-4Fi" secondAttribute="centerX" id="MiR-0Y-VWr"/>
+                            <constraint firstItem="XcX-Uv-Qr4" firstAttribute="width" secondItem="Xw7-hA-4Fi" secondAttribute="width" constant="-32" id="TNN-We-rnJ"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="XcX-Uv-Qr4" secondAttribute="leading" id="d8k-ZN-0HV"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Xw7-hA-4Fi" secondAttribute="leading" constant="16" id="jPj-db-ZyZ"/>
+                            <constraint firstItem="Xw7-hA-4Fi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="mLs-Tc-jKf"/>
+                            <constraint firstItem="XcX-Uv-Qr4" firstAttribute="top" secondItem="Xw7-hA-4Fi" secondAttribute="bottom" constant="-50" id="ujv-fq-vnJ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="Xw7-hA-4Fi" id="G0w-o8-IwZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Location" width="48" height="48"/>
+    </resources>
 </document>
