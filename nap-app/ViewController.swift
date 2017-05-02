@@ -14,7 +14,7 @@ protocol HandleMapSearch {
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     let manager = CLLocationManager()
-    var currentBoundary = MKCircle()
+    //var currentBoundary = MKCircle()
     var resultSearchController:UISearchController? = nil
     var locationDisabled = false
     var selectedPin:MKPlacemark? = nil
@@ -88,20 +88,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBAction func selectButtonPressed(_ sender: Any) {
         print(mapView.centerCoordinate)
         //mapView.remove(currentBoundary)
-        currentBoundary = MKCircle(center: mapView.centerCoordinate, radius: regionRadius / 2)
-        self.mapView.delegate = self
-        self.mapView.add(currentBoundary)
+        
+        performSegue(withIdentifier: "toRadius", sender: self)
     }
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is MKCircle {
-            let circle = MKCircleRenderer(overlay: overlay)
-            circle.strokeColor = UIColor.red
-            circle.fillColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.1)
-            circle.lineWidth = 1
-            return circle
-        } else {
-            return MKPolylineRenderer()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let id = segue.identifier {
+            
+            if id == "toRadius" {
+                if let dest = segue.destination as? RadiusViewController{
+                    //dest.centerCoordinate = mapView!.centerCoordinate
+                    dest.region = mapView!.region
+                    
+                }
+            }
+            
         }
     }
 }
@@ -109,20 +110,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 extension ViewController: HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark){
         // cache the pin
-        selectedPin = placemark
+        //selectedPin = placemark
         // clear existing pins
-        mapView.removeAnnotations(mapView.annotations)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = placemark.coordinate
-        annotation.title = placemark.name
-        if let city = placemark.locality,
+        //mapView.removeAnnotations(mapView.annotations)
+        //let annotation = MKPointAnnotation()
+        //annotation.coordinate = placemark.coordinate
+        //annotation.title = placemark.name
+        /*if let city = placemark.locality,
             let state = placemark.administrativeArea {
             annotation.subtitle = city + " " +  state
         }
-        mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegionMake(placemark.coordinate, span)
-        mapView.setRegion(region, animated: true)
+        mapView.addAnnotation(annotation)*/
+        //let span = MKCoordinateSpanMake(0.05, 0.05)
+        //let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        //mapView.setRegion(region, animated: true)
+        if let location = placemark.location {
+            centerMapOnLocation(location: location)
+        }
     }
 }
 

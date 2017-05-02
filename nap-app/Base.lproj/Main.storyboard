@@ -22,13 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xw7-hA-4Fi">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xw7-hA-4Fi">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XcX-Uv-Qr4">
                                 <rect key="frame" x="16" y="617" width="343" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Select"/>
+                                <state key="normal" title="Set Destination"/>
                                 <connections>
                                     <action selector="selectButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XX7-7u-T0P"/>
                                 </connections>
@@ -54,11 +54,90 @@
                     <connections>
                         <outlet property="centerPin" destination="gZc-eR-ccB" id="yBt-z0-DiS"/>
                         <outlet property="mapView" destination="Xw7-hA-4Fi" id="G0w-o8-IwZ"/>
+                        <segue destination="EYz-n1-l46" kind="showDetail" identifier="toRadius" action="showViewController:sender:" id="5W2-pY-vac"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="137.18140929535232"/>
+        </scene>
+        <!--Radius View Controller-->
+        <scene sceneID="FFM-hG-GWT">
+            <objects>
+                <viewController id="EYz-n1-l46" customClass="RadiusViewController" customModule="nap_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Feu-5z-As6"/>
+                        <viewControllerLayoutGuide type="bottom" id="cVM-lq-bgf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ljC-cY-G3l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" rotateEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YRQ-m1-BPZ">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RG4-nE-1vn">
+                                <rect key="frame" x="16" y="617" width="343" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Set Radius"/>
+                                <connections>
+                                    <action selector="selectButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ShH-js-CpV"/>
+                                    <action selector="setRadiusPressed:" destination="EYz-n1-l46" eventType="touchUpInside" id="vUr-tt-m1s"/>
+                                </connections>
+                            </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="qSj-ol-yDZ">
+                                <rect key="frame" x="163" y="331" width="48" height="48"/>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="Minus" maximumValueImage="Plus" translatesAutoresizingMaskIntoConstraints="NO" id="zQ0-5o-Dtw">
+                                <rect key="frame" x="14" y="579" width="347" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="EYz-n1-l46" eventType="valueChanged" id="yxe-DH-2an"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YRQ-m1-BPZ" firstAttribute="leading" secondItem="ljC-cY-G3l" secondAttribute="leadingMargin" constant="-16" id="3Ia-T3-CsX"/>
+                            <constraint firstItem="qSj-ol-yDZ" firstAttribute="centerX" secondItem="YRQ-m1-BPZ" secondAttribute="centerX" id="46c-IS-tUA"/>
+                            <constraint firstItem="YRQ-m1-BPZ" firstAttribute="top" secondItem="Feu-5z-As6" secondAttribute="bottom" constant="-20" id="4UX-iQ-PfH"/>
+                            <constraint firstItem="cVM-lq-bgf" firstAttribute="top" secondItem="YRQ-m1-BPZ" secondAttribute="bottom" id="F7m-vo-6lj"/>
+                            <constraint firstItem="qSj-ol-yDZ" firstAttribute="centerY" secondItem="YRQ-m1-BPZ" secondAttribute="centerY" id="LFi-Jg-5eg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YRQ-m1-BPZ" secondAttribute="trailing" constant="-16" id="bEY-43-Gjn"/>
+                            <constraint firstItem="RG4-nE-1vn" firstAttribute="top" secondItem="YRQ-m1-BPZ" secondAttribute="bottom" constant="-50" id="ewY-wL-4rW"/>
+                            <constraint firstItem="RG4-nE-1vn" firstAttribute="centerX" secondItem="YRQ-m1-BPZ" secondAttribute="centerX" id="h6S-uh-9JQ"/>
+                            <constraint firstItem="RG4-nE-1vn" firstAttribute="width" secondItem="YRQ-m1-BPZ" secondAttribute="width" constant="-32" id="hhF-sg-Y7a"/>
+                            <constraint firstItem="zQ0-5o-Dtw" firstAttribute="centerX" secondItem="RG4-nE-1vn" secondAttribute="centerX" id="lsK-gf-NUg"/>
+                            <constraint firstItem="zQ0-5o-Dtw" firstAttribute="width" secondItem="RG4-nE-1vn" secondAttribute="width" id="mlV-51-EbI"/>
+                            <constraint firstItem="RG4-nE-1vn" firstAttribute="top" secondItem="zQ0-5o-Dtw" secondAttribute="bottom" constant="8" id="xaq-GQ-huk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="YRQ-m1-BPZ" id="doV-9p-MEx"/>
+                        <outlet property="slider" destination="zQ0-5o-Dtw" id="21a-Il-3G4"/>
+                        <segue destination="9Mh-n7-a1c" kind="show" id="DBV-kY-iRc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yu9-2K-edE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1080.8" y="821.73913043478262"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="peE-d6-tPf">
+            <objects>
+                <viewController id="9Mh-n7-a1c" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QDG-5g-cH6"/>
+                        <viewControllerLayoutGuide type="bottom" id="9FJ-6C-xZt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I15-ke-ZuP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d1J-o0-axy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1772" y="818"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="qd0-EU-H4I">
@@ -125,5 +204,7 @@
     </scenes>
     <resources>
         <image name="Location" width="48" height="48"/>
+        <image name="Minus" width="25" height="25"/>
+        <image name="Plus" width="25" height="25"/>
     </resources>
 </document>
