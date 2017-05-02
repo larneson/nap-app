@@ -15,6 +15,7 @@ class RadiusViewController: UIViewController, MKMapViewDelegate {
     //var centerCoordinate = CLLocationCoordinate2D()
     //let regionRadius: CLLocationDistance = 1000
     var region = MKCoordinateRegion()
+    var currentBoundary = MKCircle()
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var slider: UISlider!
@@ -26,23 +27,14 @@ class RadiusViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        // center on center coordinate
-        //let coordinateRegion = MKCoordinateRegionMakeWithDistance(centerCoordinate, regionRadius * 2.0, regionRadius * 2.0)
-        //mapView.setRegion(coordinateRegion, animated: true)
         mapView.setRegion(region, animated: false)
         self.mapView.delegate = self
         makeCircle(radius: getRadiusDistance()/4)
-        
-        /*slider.maximumValueImage = #imageLiteral(resourceName: "Plus")
-        slider.minimumValueImage = #imageLiteral(resourceName: "Minus")
-        slider.maximumValue = 10
-        slider.minimumValue = 1*/
     }
     
     func makeCircle(radius: CLLocationDistance) {
-        self.mapView.removeOverlays(mapView.overlays)
-        let currentBoundary = MKCircle(center: mapView.centerCoordinate, radius: radius)
+        self.mapView.removeOverlays(self.mapView.overlays)
+        currentBoundary = MKCircle(center: mapView.centerCoordinate, radius: radius)
         self.mapView.add(currentBoundary)
 
 
@@ -74,15 +66,17 @@ class RadiusViewController: UIViewController, MKMapViewDelegate {
     }
 
     @IBAction func setRadiusPressed(_ sender: Any) {
+        performSegue(withIdentifier: "toFinal", sender: self)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let id = segue.identifier {
+            if id == "toFinal" {
+                if let dest = segue.destination as? FinalViewController {
+                    dest.circle = currentBoundary
+                }
+            }
+        }
     }
-    */
 
 }

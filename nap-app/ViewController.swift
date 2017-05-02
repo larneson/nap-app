@@ -75,10 +75,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // most recent location update at the end of the array
-        //let latestLocation = locations[locations.count - 1]
-        // do something
-        //print("this will never work :(")
+
         if locationDisabled {
             centerMapOnLocation(location: manager.location!)
             locationDisabled = false
@@ -86,8 +83,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
 
     @IBAction func selectButtonPressed(_ sender: Any) {
+        if locationDisabled {
+            print("can't find location")
+            return
+        }
         print(mapView.centerCoordinate)
-        //mapView.remove(currentBoundary)
         
         performSegue(withIdentifier: "toRadius", sender: self)
     }
@@ -109,21 +109,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
 extension ViewController: HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark){
-        // cache the pin
-        //selectedPin = placemark
-        // clear existing pins
-        //mapView.removeAnnotations(mapView.annotations)
-        //let annotation = MKPointAnnotation()
-        //annotation.coordinate = placemark.coordinate
-        //annotation.title = placemark.name
-        /*if let city = placemark.locality,
-            let state = placemark.administrativeArea {
-            annotation.subtitle = city + " " +  state
-        }
-        mapView.addAnnotation(annotation)*/
-        //let span = MKCoordinateSpanMake(0.05, 0.05)
-        //let region = MKCoordinateRegionMake(placemark.coordinate, span)
-        //mapView.setRegion(region, animated: true)
         if let location = placemark.location {
             centerMapOnLocation(location: location)
         }
