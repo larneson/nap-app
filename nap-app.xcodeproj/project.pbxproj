@@ -13,6 +13,7 @@
 		9D93C1CB1EB2C2F500F7FDB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D93C1CA1EB2C2F500F7FDB1 /* Assets.xcassets */; };
 		9D93C1CE1EB2C2F600F7FDB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D93C1CC1EB2C2F600F7FDB1 /* LaunchScreen.storyboard */; };
 		9D93C1D91EB2C2F600F7FDB1 /* nap_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D93C1D81EB2C2F600F7FDB1 /* nap_appTests.swift */; };
+		9DFC905C1EB6C6D8000B6A5C /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC905B1EB6C6D8000B6A5C /* LocationSearchTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		9D93C1D41EB2C2F600F7FDB1 /* nap-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nap-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D93C1D81EB2C2F600F7FDB1 /* nap_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nap_appTests.swift; sourceTree = "<group>"; };
 		9D93C1DA1EB2C2F600F7FDB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DFC905B1EB6C6D8000B6A5C /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				9D93C1C31EB2C2F500F7FDB1 /* AppDelegate.swift */,
 				9D93C1C51EB2C2F500F7FDB1 /* ViewController.swift */,
 				9D93C1C71EB2C2F500F7FDB1 /* Main.storyboard */,
+				9DFC905B1EB6C6D8000B6A5C /* LocationSearchTable.swift */,
 				9D93C1CA1EB2C2F500F7FDB1 /* Assets.xcassets */,
 				9D93C1CC1EB2C2F600F7FDB1 /* LaunchScreen.storyboard */,
 				9D93C1CF1EB2C2F600F7FDB1 /* Info.plist */,
@@ -200,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DFC905C1EB6C6D8000B6A5C /* LocationSearchTable.swift in Sources */,
 				9D93C1C61EB2C2F500F7FDB1 /* ViewController.swift in Sources */,
 				9D93C1C41EB2C2F500F7FDB1 /* AppDelegate.swift in Sources */,
 			);
