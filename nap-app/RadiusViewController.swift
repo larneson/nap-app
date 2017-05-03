@@ -12,8 +12,6 @@ import CoreLocation
 
 class RadiusViewController: UIViewController, MKMapViewDelegate {
     
-    //var centerCoordinate = CLLocationCoordinate2D()
-    //let regionRadius: CLLocationDistance = 1000
     var region = MKCoordinateRegion()
     var currentBoundary = MKCircle()
 
@@ -42,7 +40,6 @@ class RadiusViewController: UIViewController, MKMapViewDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
