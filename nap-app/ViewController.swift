@@ -33,9 +33,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         manager.delegate = self 
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse
+        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedAlways
         {
-            manager.requestWhenInUseAuthorization()
+            manager.requestAlwaysAuthorization()
             if let currentLocation = manager.location {
                 centerMapOnLocation(location: currentLocation)
             }
@@ -71,7 +71,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("lolfail", error)
+        print(error)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -87,7 +87,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             print("can't find location")
             return
         }
-        print(mapView.centerCoordinate)
+        print(mapView.userLocation)
+        
         
         performSegue(withIdentifier: "toRadius", sender: self)
     }
@@ -105,6 +106,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
         }
     }
+    
 }
 
 extension ViewController: HandleMapSearch {
