@@ -14,7 +14,6 @@ protocol HandleMapSearch {
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     let manager = CLLocationManager()
-    //var currentBoundary = MKCircle()
     var resultSearchController:UISearchController? = nil
     var locationDisabled = false
     var selectedPin:MKPlacemark? = nil
@@ -87,9 +86,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             print("can't find location")
             return
         }
-        print(mapView.userLocation)
-        
-        
         performSegue(withIdentifier: "toRadius", sender: self)
     }
     
@@ -98,7 +94,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
             if id == "toRadius" {
                 if let dest = segue.destination as? RadiusViewController{
-                    //dest.centerCoordinate = mapView!.centerCoordinate
                     dest.region = mapView!.region
                     
                 }

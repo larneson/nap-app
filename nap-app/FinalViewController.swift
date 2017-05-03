@@ -115,23 +115,6 @@ class FinalViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             return
         }
         
-        /*let content = UNMutableNotificationContent()
-        content.title = "Don't forget"
-        content.body = "Buy some milk"
-        content.sound = UNNotificationSound.default()
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
-                                                        repeats: false)
-        let identifier = "UYLLocalNotification"
-        let request = UNNotificationRequest(identifier: identifier,
-                                            content: content, trigger: trigger)
-        
-        let center = UNUserNotificationCenter.current()
-        center.add(request, withCompletionHandler: { (error) in
-            if let error = error {
-                // Something went wrong
-                print(error)
-            }
-        })*/
         AudioServicesPlayAlertSound(1005)
         let localNotification = UILocalNotification()
         localNotification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
